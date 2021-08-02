@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.facturae.es/Facturae/2009/v3.2/Facturae" targetNamespace="http://www.facturae.es/Facturae/2009/v3.2/Facturae" version="3.2">
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.facturae.es/Facturae/2009/v3.2/Facturae" targetNamespace="http://www.facturae.es/Facturae/2009/v3.2/Facturae" version="3.2" xmlns:cne="http://www.cne.es/Facturae/Extensions">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:import schemaLocation="CNEExtension.xsd" namespace="http://www.cne.es/Facturae/Extensions"/>
 	<xs:element name="Facturae">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Element ORIGIN of Facturae Invoices File.</xs:documentation>
@@ -692,12 +693,13 @@
 					<xs:documentation xml:lang="es"> Código de artículo.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="Extensions" type="ExtensionsType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation xml:lang="en"> New structured definitions can be incorporated when they are of collective interest of the issuers and recipients, and have not already been defined in the invoice schema.</xs:documentation>
-					<xs:documentation xml:lang="es"> Extensiones. Podrán incorporarse nuevas definiciones estructuradas cuando sean de interés conjunto para emisores y receptores, y no estén ya definidas en el esquema de la factura.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
+			<xs:element name="Extensions" minOccurs="0">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="cne:CNEExtensionLinea"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- Invoices - Invoice - Items - DeliveryNotesReferences -->
