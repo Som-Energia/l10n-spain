@@ -66,8 +66,9 @@
 		</xs:annotation>
 		<xs:restriction base="xs:normalizedString">
 			<xs:whiteSpace value="collapse"/>
-			<xs:length value="7"/>
-			<xs:pattern value="\d{2}/\d{4}"/>
+			<xs:minLength value="6"/>
+			<xs:maxLength value="7"/>
+			<xs:pattern value="\d{1,2}/\d{4}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TipoNumeroFactura">
