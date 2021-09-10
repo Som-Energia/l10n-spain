@@ -14,11 +14,11 @@ class PaymentReturnImport(models.TransientModel):
 
     @api.model
     def _parse_file(self, data_file):
-        n19_parser = N19Parser()
         try:
             _logger.debug("Try parsing as a Norma 19 "
                           "Debit Credit Notification.")
-            parsed_return_import = n19_parser.parse(data_file)
+            n19_parser = N19Parser(data_file)
+            parsed_return_import = n19_parser.parse()
             for transaction in parsed_return_import['transactions']:
                 mandate = self.env['account.banking.mandate'].search([
                     ('unique_mandate_reference', '=', transaction.pop('mandate')),
