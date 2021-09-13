@@ -28,7 +28,6 @@ class N19Parser(object):
         creditor_header_line = next(line for line in self.lines if line[0:2] == '22')
         payment_return = {
             'date': datetime.strptime(creditor_header_line[45:53], '%Y%m%d'),
-            'name': creditor_header_line[123:158],
             'account_number': creditor_header_line[265:299].strip(),
             'transactions': [],
         }

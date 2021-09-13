@@ -6,7 +6,7 @@
     'summary': """
         This addon allows to import payment returns from Cuaderno/Norma 19 files
         """,
-    'version': '12.0.0.1.0',
+    'version': '12.0.0.1.1',
     'development_status': 'Production/Stable',
     'license': 'AGPL-3',
     'author': 'Odoo Community Association (OCA),Coopdevs SCCL',
