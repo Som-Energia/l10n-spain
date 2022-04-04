@@ -78,6 +78,8 @@ class AccountInvoiceImport(models.TransientModel):
         invoice = xml_root.find('Invoices/Invoice')
 
         inv_number_xpath = invoice.find('InvoiceHeader/InvoiceNumber')
+        inv_series_code_xpath = invoice.find('InvoiceHeader/InvoiceSeriesCode')
+
         inv_class = invoice.find('InvoiceHeader/InvoiceClass')
         if inv_class is not None and inv_class.text not in ['OO', 'OC']:
             inv_type = 'in_refund'
@@ -98,6 +100,7 @@ class AccountInvoiceImport(models.TransientModel):
             'type': inv_type,
             'partner': partner_dict,
             'invoice_number': inv_number_xpath.text,
+            'invoice_series_code': inv_series_code_xpath.text,
             'date': date_dt.date(),
             'date_due': False,
             'date_start': date_start,
